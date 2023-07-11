@@ -1,0 +1,87 @@
+.card {
+  position: relative;
+  
+
+  padding: 1.2rem;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(170, 170, 170, 0.308);
+  border: 1px solid rgba(190, 190, 190, 0.089);
+  cursor: pointer;
+}
+
+
+
+  .img {
+    width: 50%;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+  }
+
+  .title{
+    font-size: 32px;
+    font-weight: 700;
+    opacity: 1;
+    background: linear-gradient(-45deg, #17e9bf 0%, #0136d3 100% );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    text-align: center;
+  }
+
+  .subtitle{
+    font-size: 22px;
+    font-weight: 700;
+    opacity: 1;
+    background: linear-gradient(-45deg, #17e9bf 0%, #0136d3 100% );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    text-align: center;
+  }
+
+  .spinner {
+    width: 56px;
+    height: 56px;
+    display: grid;
+    border: 4.5px solid #0000;
+    border-radius: 50%;
+    border-color: #dbdcef #0000;
+    animation: spinner-e04l1k 1s infinite linear;
+  }
+  
+  .spinner::before,
+  .spinner::after {
+    content: "";
+    grid-area: 1/1;
+    margin: 2.2px;
+    border: inherit;
+    border-radius: 50%;
+  }
+  
+  .spinner::before {
+    border-color: #474bff #0000;
+    animation: inherit;
+    animation-duration: 0.5s;
+    animation-direction: reverse;
+  }
+  
+  .spinner::after {
+    margin: 8.9px;
+  }
+  
+  @keyframes spinner-e04l1k {
+    100% {
+      transform: rotate(1turn);
+    }
+  }
+
+body{
+  background-image: url('images.jpg');
+  background-size:inherit;
+}
