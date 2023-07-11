@@ -9,6 +9,7 @@ import plotly.express as px
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP], 
                 meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1.0", }],
                 )
+server = app.server
 
 #Load Image
 image_path = 'assets/survey.jpg'
