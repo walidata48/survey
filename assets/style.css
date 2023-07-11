@@ -1,24 +1,17 @@
 .card {
-  position: relative;
-  
+    background-color: rgb(255, 255, 255);
+    padding: 1.2rem;
+    margin: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 20px 30px -20px rgba(5, 5, 5, 0.24);
+  }
 
-  padding: 1.2rem;
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
-  background-color: rgba(170, 170, 170, 0.308);
-  border: 1px solid rgba(190, 190, 190, 0.089);
-  cursor: pointer;
-}
-
-
-
-  .img {
+.img {
     width: 50%;
     height: fit-content;
     margin-left: auto;
     margin-right: auto;
     display: block;
-
   }
 
   .title{
@@ -80,8 +73,3 @@
       transform: rotate(1turn);
     }
   }
-
-body{
-  background-image: url('images.jpg');
-  background-size:inherit;
-}
