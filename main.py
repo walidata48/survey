@@ -1,36 +1,27 @@
 import pandas as pd
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 from dash import Dash, html, Input, Output,dcc,dash_table
 import dash_bootstrap_components as dbc
-from dash.exceptions import PreventUpdate
-from dash_iconify import DashIconify
 import plotly.express as px
 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP], 
-                meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1.0", }],
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], 
+                meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5,'}", }],
                 )
-server = app.server
 
 #Load Image
 image_path = 'assets/survey.jpg'
 
 
-### --- LOAD DATAFRAME
+# Load Dataframe
 excel_file = 'Survey_Results.xlsx'
 sheet_name = 'DATA'
 
-df = pd.read_excel(excel_file,
-                   sheet_name=sheet_name,
-                   usecols='B:D',
-                   header=3)
+df = pd.read_excel(excel_file, sheet_name=sheet_name, usecols='B:D', header=3)
 
-df_participants = pd.read_excel(excel_file,
-                                sheet_name= sheet_name,
-                                usecols='F:G',
-                                header=3)
+df_participants = pd.read_excel(excel_file, sheet_name= sheet_name, usecols='F:G', header=3)
 df_participants.dropna(inplace=True)
 
-# --- STREAMLIT SELECTION
+# Selection
 department = df['Department'].unique().tolist()
 ages = df['Age'].unique().tolist()
 
@@ -56,17 +47,17 @@ dbc.Row([
     dbc.Col(dcc.Graph(id='graph2', ), className='card'),
     ]), 
     dbc.Row([dbc.Col(html.Div(className='spinner'))
-        ,dbc.Col(html.P('I have got this inspiration from his streamlit work : https://github.com/Sven-Bo/excel-webapp-streamlit'), )])
+        ,])
 
 ])
 
 @app.callback(Output('graph1', 'figure'), Output('graph2', 'figure'), Output('table', 'data'), Input('age', 'value'), Input('department', 'value'))
 def graph(age, department):
-    # --- FILTER DATAFRAME BASED ON SELECTION
+    # Filter Dataframe Based On Selection
     mask = (df['Age'].between(*age)) & (df['Department'].isin(department))
     number_of_result = df[mask].shape[0]
 
-    # --- GROUP DATAFRAME AFTER SELECTION
+    # Group Dataframe After Selection
     df_grouped = df[mask].groupby(by=['Rating']).count()[['Age']]
     df_grouped = df_grouped.rename(columns={'Age': 'Votes'})
     df_grouped = df_grouped.reset_index()
@@ -76,7 +67,6 @@ def graph(age, department):
                     x='Rating',
                     y='Votes',
                     text='Votes',
-                    #color_discrete_sequence = ['#F63366']*len(df_grouped),
                     )
     
     bar_chart.update_layout(paper_bgcolor = 'rgba(0,0,0,0)',
@@ -106,4 +96,4 @@ def graph(age, department):
     return bar_chart, pie_chart, table
 
 if __name__ == '__main__':
-    app.run_server(debug=False,)
+    app.run_server(host='0.0.0.0', debug=True,)
