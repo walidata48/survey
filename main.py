@@ -94,4 +94,4 @@ def graph(age, department):
     return bar_chart, pie_chart, table
 
 if __name__ == '__main__':
-    app.run_server(host='0.0.0.0', debug=True,)
+    app.run_server(debug=False,)
