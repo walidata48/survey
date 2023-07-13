@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 import plotly.express as px
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], )
-
+server = app.server
 #Load Image
 image_path = 'assets/survey.jpg'
 
